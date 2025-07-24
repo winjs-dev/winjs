@@ -1,1 +1,1 @@
-# winjs
+# WinJS
