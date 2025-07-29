@@ -1,5 +1,4 @@
 import { logger } from '@winner-fed/utils';
-import { existsSync } from 'fs';
 import getGitRepoInfo from 'git-repo-info';
 import { join } from 'path';
 import { rimraf } from 'rimraf';
@@ -58,29 +57,10 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
   }
   if (version.includes('-canary.')) tag = 'canary';
 
-  // update example versions
-  logger.event('update example versions');
-  const examplesDir = PATHS.EXAMPLES;
-  const examples = fs.readdirSync(examplesDir).filter((dir) => {
-    return (
-      !dir.startsWith('.') && existsSync(join(examplesDir, dir, 'package.json'))
-    );
-  });
-  examples.forEach((example) => {
-    const pkg = require(join(examplesDir, example, 'package.json'));
-    pkg.scripts ||= {};
-    pkg.scripts['start'] = 'npm run dev';
-    delete pkg.version;
-    fs.writeFileSync(
-      join(examplesDir, example, 'package.json'),
-      `${JSON.stringify(pkg, null, 2)}\n`,
-    );
-  });
-
   // update pnpm lockfile
   logger.event('update pnpm lockfile');
   $.verbose = false;
-  await $`pnpm run install:dep`;
+  await $`pnpm install`;
   $.verbose = true;
 
   // commit
@@ -100,10 +80,24 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
   // pnpm publish
   logger.event('pnpm publish');
   $.verbose = false;
-  const innerPkgs = pkgs.filter((pkg) => !['win'].includes(pkg));
+
+  // check 2fa config
+  let otpArg: string[] = [];
+  if (
+    (await $`npm profile get "two-factor auth"`).toString().includes('writes')
+  ) {
+    let code = '';
+    do {
+      // get otp from user
+      code = await question('This operation requires a one-time password: ');
+      // generate arg for zx command
+      // why use array? https://github.com/google/zx/blob/main/docs/quotes.md
+      otpArg = ['--otp', code];
+    } while (code.length !== 6);
+  }
 
   await Promise.all(
-    innerPkgs.map(async (pkg) => {
+    pkgs.map(async (pkg) => {
       await $`cd packages/${pkg} && pnpm publish --no-git-checks --tag ${tag} ${otpArg}`;
       logger.info(`+ ${pkg}`);
     }),
@@ -111,29 +105,3 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
 
   $.verbose = true;
 })();
-
-// function releaseByGithub(releaseNotes: string, version: string) {
-//   const releaseParams = {
-//     tag: version,
-//     title: `v${version}`,
-//     body: releaseNotes,
-//     prerelease: false,
-//   };
-//   open(
-//     `https://github.com/umijs/umi/releases/new?${qs.stringify(releaseParams)}`,
-//   );
-// }
-
-// function generateChangelog(releaseNotes: string) {
-//   const CHANGELOG_PATH = join(PATHS.ROOT, 'TMP_CHANGELOG.md');
-//   const hasFile = fs.existsSync(CHANGELOG_PATH);
-//   let newStr = '';
-//   if (hasFile) {
-//     const str = fs.readFileSync(CHANGELOG_PATH, 'utf-8');
-//     const arr = str.split('# win changelog');
-//     newStr = `# win changelog\n\n${releaseNotes}${arr[1]}`;
-//   } else {
-//     newStr = `# win changelog\n\n${releaseNotes}`;
-//   }
-//   fs.writeFileSync(CHANGELOG_PATH, newStr);
-// }

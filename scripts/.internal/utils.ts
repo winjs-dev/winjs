@@ -1,5 +1,5 @@
+import { logger } from '@winner-fed/utils';
 import spawn from '@winner-fed/utils/compiled/cross-spawn';
-import * as logger from '@winner-fed/utils/src/logger';
 import type { SpawnSyncOptions } from 'child_process';
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';

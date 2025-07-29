@@ -1,6 +1,6 @@
 {
   "name": "@winjs-dev/create-win",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "@winjs-dev/create-win",
   "keywords": [
     "WinJS",
@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "build": "win-scripts father build",
-    "dev": "win-scripts father dev"
+    "dev": "win-scripts father dev",
+    "build:deps": "win-scripts bundleDeps"
   },
   "dependencies": {
     "@winner-fed/clack-prompts": "1.0.0",

@@ -1,7 +1,7 @@
 import { glob, lodash, logger } from '@winner-fed/utils';
 import { isMatch } from 'matcher';
 import 'zx/globals';
-import { PATHS, SCRIPTS } from './.internal/constants';
+import { SCRIPTS } from './.internal/constants';
 import { eachPkg, getPkgs } from './.internal/utils';
 
 const COMMON_IGNORES = [
@@ -68,38 +68,3 @@ if (missingDetected) {
 } else {
   logger.ready(`Check packages files success`);
 }
-
-// check examples/*
-const EXAMPLE_DIR = PATHS.EXAMPLES;
-eachPkg(
-  getPkgs({ base: EXAMPLE_DIR }),
-  ({ name, pkgJson, pkgPath }) => {
-    /**
-     * check example `package.json` includes required fields
-     */
-    logger.info(`Checking ${chalk.blue('example')}:`, name);
-    const oldPkgJson = lodash.cloneDeep(pkgJson);
-    const expectName = `@example/${name}`;
-    if (pkgJson.name !== expectName) {
-      pkgJson.name = expectName;
-      logger.warn(
-        chalk.yellow(`Change '${name}' example name to '${expectName}'`),
-      );
-    }
-    if (pkgJson.private !== true) {
-      pkgJson.private = true;
-      logger.warn(chalk.yellow(`Set '${name}' example as private package`));
-    }
-    if (!lodash.isEqual(pkgJson, oldPkgJson)) {
-      fs.writeFileSync(
-        pkgPath,
-        `${JSON.stringify(pkgJson, null, 2)}\n`,
-        'utf-8',
-      );
-    }
-  },
-  {
-    base: EXAMPLE_DIR,
-  },
-);
-logger.ready(`Check examples success`);
