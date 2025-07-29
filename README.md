@@ -1,6 +1,6 @@
 # WinJS
 
-<p align="center">
+<p>
   <img src="https://img.shields.io/npm/v/@winner-fed/winjs.svg" alt="npm version" />
   <img src="https://img.shields.io/npm/dm/@winner-fed/winjs.svg" alt="npm downloads" />
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
@@ -247,11 +247,11 @@ pnpm dev
 
 ## 🔗 相关链接
 
-- 📖 [官方文档](winjs-dev.github.io/winjs-docs/)
+- 📖 [官方文档](https://winjs-dev.github.io/winjs-docs/)
 - 📦 [NPM 包](https://www.npmjs.com/package/@winner-fed/winjs)
 
 ---
 
-<p align="center">
+<p>
   如果这个项目对你有帮助，请给我们一个 ⭐ 星标支持！
 </p>
