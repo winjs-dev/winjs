@@ -81,9 +81,24 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
   logger.event('pnpm publish');
   $.verbose = false;
 
+  // check 2fa config
+  let otpArg: string[] = [];
+  if (
+    (await $`npm profile get "two-factor auth"`).toString().includes('writes')
+  ) {
+    let code = '';
+    do {
+      // get otp from user
+      code = await question('This operation requires a one-time password: ');
+      // generate arg for zx command
+      // why use array? https://github.com/google/zx/blob/main/docs/quotes.md
+      otpArg = ['--otp', code];
+    } while (code.length !== 6);
+  }
+
   await Promise.all(
     pkgs.map(async (pkg) => {
-      await $`cd packages/${pkg} && pnpm publish --no-git-checks --tag ${tag}`;
+      await $`cd packages/${pkg} && pnpm publish --no-git-checks --tag ${tag} ${otpArg}`;
       logger.info(`+ ${pkg}`);
     }),
   );
