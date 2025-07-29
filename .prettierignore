@@ -1,0 +1,16 @@
+node_modules
+.win
+.win-production
+dist
+.mfsu
+*.d.ts
+compiled
+*.js
+fixtures
+*.md
+*.yaml
+*.less
+
+.turbo
+
+packages/create-win/templates

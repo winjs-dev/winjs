@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 以下选择一个即可
+npx --no-install win verify-commit-hs $1
+#npx f2elint commit-msg-scan

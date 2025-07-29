@@ -1,0 +1,8 @@
+{
+  "name": "win-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "bin": {
+    "win-scripts": "bin/win-scripts.js"
+  }
+}

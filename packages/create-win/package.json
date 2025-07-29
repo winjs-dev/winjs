@@ -1,0 +1,35 @@
+{
+  "name": "@winjs-dev/create-win",
+  "version": "0.0.0",
+  "description": "@winjs-dev/create-win",
+  "keywords": [
+    "WinJS",
+    "Rsbuild",
+    "Rspack",
+    "Webpack",
+    "Vite",
+    "Vue",
+    "Framework"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "create-win": "bin/create-win.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "win-scripts father build",
+    "dev": "win-scripts father dev"
+  },
+  "dependencies": {
+    "@winner-fed/clack-prompts": "1.0.0",
+    "@winner-fed/utils": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "win-scripts turbo build",
+    "build:extra": "win-scripts turbo build:extra",
+    "build:force": "win-scripts turbo build --no-cache",
+    "build:release": "win-scripts turbo build --no-cache",
+    "changelog": "win-scripts changelog",
+    "check-dependency-version": "check-dependency-version-consistency . --ignore-dep vue-loader vue vue-router vuex",
+    "check:packageFiles": "win-scripts checkPackageFiles",
+    "clean": "rimraf packages/**/node_modules && rimraf winjs-examples/**/node_modules && rimraf ./node_modules",
+    "dep:update": "pnpm up --interactive --latest --recursive",
+    "dev": "win-scripts turbo dev --parallel",
+    "format": "prettier --cache --write .",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "release": "win-scripts release",
+    "setup:webstorm": "win-scripts setupWebStorm",
+    "sort-package-json": "sort-package-json \"./package.json\" \"packages/*/package.json\"",
+    "turbo:clean": "rimraf .turbo && rimraf packages/**/.turbo"
+  },
+  "lint-staged": {
+    "*.{jsx,less,md}": [
+      "prettier --no-error-on-unmatched-pattern --cache --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --no-error-on-unmatched-pattern --cache --parser=typescript --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/node": "^18.17.15",
+    "@winner-fed/prettier-config-win": "^1.0.0",
+    "check-dependency-version-consistency": "^4.1.0",
+    "father": "4.3.1",
+    "git-repo-info": "^2.1.1",
+    "husky": "^8.0.3",
+    "lerna": "^6.6.2",
+    "lint-staged": "^13.3.0",
+    "only-allow": "^1.1.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-packagejson": "^2.5.1",
+    "rimraf": "^5.0.10",
+    "sort-package-json": "^2.10.0",
+    "ts-node": "^10.9.1",
+    "tsx": "4.17.0",
+    "turbo": "1.9.3",
+    "typescript": "^4.9.5",
+    "win-scripts": "workspace:*",
+    "zx": "^7.1.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
