@@ -18,7 +18,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@winner-fed/winjs": "{{{ version }}}",
+    "@winner-fed/winjs": "*",
     "father": "^4.1.8",
     "@types/node": "^18.15.11",
     "typescript": "^5.0.3"

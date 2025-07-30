@@ -13,7 +13,7 @@
     "preview": "win preview"
   },
   "dependencies": {
-    "@winner-fed/winjs": "{{{ version }}}"
+    "@winner-fed/winjs": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.3"

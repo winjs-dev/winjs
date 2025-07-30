@@ -359,9 +359,8 @@ export default async ({
     if (isPnpm8) {
       await installWithPnpm8(target);
     } else {
-      const isYarn = npmClient === ENpmClient.yarn;
       try {
-        await execute(npmClient, [isYarn ? '' : 'install'], {
+        await execute(npmClient, ['install'], {
           cwd: target,
           onData: (data) => {
             installTask.text = data;

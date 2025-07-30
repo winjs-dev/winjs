@@ -20,7 +20,7 @@
   "dependencies": {
     "@winner-fed/cloud-utils": "^2.0.1",
     "@winner-fed/magicless": "*",
-    "@winner-fed/winjs": "{{{ version }}}"
+    "@winner-fed/winjs": "*"
   },
   "devDependencies": {
     "@winner-fed/plugin-request": "^1.0.1",
