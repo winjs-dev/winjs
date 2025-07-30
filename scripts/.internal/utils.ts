@@ -49,7 +49,7 @@ export function setExcludeFolder(opts: {
   const dirName = opts.dirName || 'packages';
   const folders = opts.folders || ['dist', 'compiled', '.turbo'];
   if (!existsSync(join(opts.cwd, '.idea'))) return;
-  const configPath = join(opts.cwd, '.idea', 'umi.iml');
+  const configPath = join(opts.cwd, '.idea', 'winjs.iml');
   let content = readFileSync(configPath, 'utf-8');
   for (const folder of folders) {
     const excludeContent = `<excludeFolder url='file://$MODULE_DIR$/${dirName}/${opts.pkg}/${folder}' />`;

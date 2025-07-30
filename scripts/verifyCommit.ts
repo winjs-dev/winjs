@@ -1,9 +1,9 @@
-import 'zx/globals';
+import { chalk, fsExtra } from '@winner-fed/utils';
 
 const msgPath = process.argv[2];
 if (!msgPath) process.exit();
 
-const msg = removeComment(fs.readFileSync(msgPath, 'utf-8').trim());
+const msg = removeComment(fsExtra.readFileSync(msgPath, 'utf-8').trim());
 const commitRE =
   /^(revert: )?(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release|dep|example|Merge)(\(.+\))?: .{1,50}/;
 
@@ -16,8 +16,8 @@ if (!commitRE.test(msg)) {
       chalk.red(
         `  Proper commit message format is required for automated changelog generation. Examples:\n\n`,
       ) +
-      `    ${chalk.green(`feat(bundler-webpack): add 'comments' option`)}\n` +
-      `    ${chalk.green(`fix(core): handle events on blur (close #28)`)}\n\n` +
+      `    ${chalk.green(`feat(create-win): add 'comments' option`)}\n` +
+      `    ${chalk.green(`fix(create-win): handle events on blur (close #28)`)}\n\n` +
       chalk.red(`  See .github/commit-convention.md for more details.\n`),
   );
   process.exit(1);
