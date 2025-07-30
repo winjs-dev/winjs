@@ -1,5 +1,5 @@
 
-> @winjs-dev/create-win@0.0.0 build /Users/liwenbo/Code/github.com/winjs-dev/winjs/packages/create-win
+> @winjs-dev/create-win@1.0.0 build /Users/liwenbo/Code/github.com/winjs-dev/winjs/packages/create-win
 > win-scripts father build
 
 win-scripts: father

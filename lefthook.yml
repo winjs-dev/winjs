@@ -71,4 +71,4 @@ post-merge:
 commit-msg:
   commands:
     commitlint:
-      run: win-scripts verifyCommit $1
+      run: npx win-scripts verifyCommit $1
