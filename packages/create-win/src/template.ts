@@ -3,7 +3,7 @@ import { x as unpack } from '@winner-fed/utils/compiled/tar';
 
 export enum ERegistry {
   npm = 'https://registry.npmjs.com/',
-  taobao = 'https://registry.npmmirror.com/'
+  taobao = 'https://registry.npmmirror.com/',
 }
 
 export type WinTemplate = `@example/${string}-template`;
