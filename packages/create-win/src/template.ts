@@ -3,12 +3,10 @@ import { x as unpack } from '@winner-fed/utils/compiled/tar';
 
 export enum ERegistry {
   npm = 'https://registry.npmjs.com/',
-  taobao = 'https://registry.npmmirror.com/',
-  // 公司内网
-  winner = 'http://artifactory.hundsun.com/artifactory/api/npm/winnerproject-npm-virtual/',
+  taobao = 'https://registry.npmmirror.com/'
 }
 
-export type WinTemplate = `@winner-fed/${string}-template`;
+export type WinTemplate = `@example/${string}-template`;
 
 interface IUnpackTemplateOpts {
   template: WinTemplate;
